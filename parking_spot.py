@@ -3,9 +3,9 @@ from vehicle import Vehicle
 
 
 class ParkingSpot:
-    def __init__(self, spot_id):
-        self.spot_id = spot_id
-        self.vehicle_type = VehicleType.MOTORCYCLE  # default vehicle type
+    def __init__(self, spot_number: int):
+        self.spot_number = spot_number
+        self.vehicle_type = VehicleType.CAR  # Default vehicle type is CAR
         self.parked_vehicle = None
 
     def is_available(self) -> bool:
@@ -15,7 +15,7 @@ class ParkingSpot:
         if self.is_available() and vehicle.get_type() == self.vehicle_type:
             self.parked_vehicle = vehicle
         else:
-            raise ValueError("Invalid vehicle type or spot is not available")
+            raise ValueError("Invalid vehicle type or spot already occupied.")
 
     def unpark_vehicle(self) -> None:
         self.parked_vehicle = None
@@ -26,5 +26,5 @@ class ParkingSpot:
     def get_parked_vehicle(self) -> Vehicle:
         return self.parked_vehicle
 
-    def get_spot_id(self) -> int:
-        return self.spot_id
+    def get_spot_number(self) -> int:
+        return self.spot_number
